@@ -3,25 +3,30 @@ from .serializers import *
 
 
 class FlightListAPIView(generics.ListAPIView):
-    serializer_class = AirFlightAllSerializer
     queryset = AirFlight.objects.all()
+    serializer_class = AirFlightAllSerializer
+
 
 
 class FlightListCreateAPIView(generics.ListCreateAPIView):
-    serializer_class = AirFlightFieldsSerializer
     queryset = AirFlight.objects.all()
+    serializer_class = AirFlightFieldsSerializer
+
 
 
 class FlightDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = AirFlightFieldsSerializer
     queryset = AirFlight.objects.all()
+    serializer_class = AirFlightFieldsSerializer
+
 
 
 class FlightDepListView(generics.ListAPIView):
-    serializer_class = AirFlightAllSerializer
     queryset = AirFlight.objects.all().order_by('departure_time')
+    serializer_class = AirFlightAllSerializer
+
 
 
 class FlightArrListView(generics.ListAPIView):
-    serializer_class = AirFlightAllSerializer
     queryset = AirFlight.objects.all().order_by('arrival_time')
+    serializer_class = AirFlightAllSerializer
+
