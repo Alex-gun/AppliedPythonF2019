@@ -9,3 +9,8 @@
 Forbidden (CSRF cookie not set.): /api/flights/2/delete/
 "DELETE /api/flights/2/delete/ HTTP/1.1" 403 2857
 "GET /api/flights/list/ HTTP/1.1" 200 14
+"GET / HTTP/1.1" 200 1279
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2414
+- Broken pipe from ('127.0.0.1', 44788)
+

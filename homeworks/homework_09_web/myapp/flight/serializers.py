@@ -29,7 +29,9 @@ class AirFlightFieldsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AirFlight
-        fields = ('departure_time', 'arrival_time', 'airport', 'aircraft', 'user_create')
+        fields = (
+            'departure_time', 'arrival_time', 'airport', 'aircraft',
+            'user_create')
 
     def create(self, validated_data):
         airports_data = validated_data.pop('airport')
@@ -42,12 +44,14 @@ class AirFlightFieldsSerializer(serializers.ModelSerializer):
         try:
             aircraft = Aircraft.objects.get(pk=aircraft_data)
         except ObjectDoesNotExist:
-            aircraft = Aircraft.objects.create(**{"aircraft_type": aircraft_data})
+            aircraft = Aircraft.objects.create(
+                **{"aircraft_type": aircraft_data})
         user_create = validated_data.pop("user_create")
         departure_time = validated_data.pop('departure_time')
         arrival_time = validated_data.pop('arrival_time')
         flight = AirFlight.objects.create(
-            **{"departure_time": departure_time, "arrival_time": arrival_time, "airport": airport, "aircraft": aircraft,
+            **{"departure_time": departure_time, "arrival_time": arrival_time,
+               "airport": airport, "aircraft": aircraft,
                "user_create": user_create})
         return flight
 
@@ -62,11 +66,14 @@ class AirFlightFieldsSerializer(serializers.ModelSerializer):
         try:
             aircraft = Aircraft.objects.get(pk=aircraft_data)
         except ObjectDoesNotExist:
-            aircraft = Aircraft.objects.create(**{"aircraft_type": aircraft_data})
+            aircraft = Aircraft.objects.create(
+                **{"aircraft_type": aircraft_data})
 
         instance.user_create = validated_data.pop("user_create")
-        instance.departure_time = validated_data.get('departure_time', instance.departure_time)
-        instance.arrival_time = validated_data.get('arrival_time', instance.arrival_time)
+        instance.departure_time = validated_data.get('departure_time',
+                                                     instance.departure_time)
+        instance.arrival_time = validated_data.get('arrival_time',
+                                                   instance.arrival_time)
         instance.airport = validated_data.get('airport', airport)
         instance.aircraft = validated_data.get('aircraft', aircraft)
         instance.save()
@@ -76,4 +83,5 @@ class AirFlightFieldsSerializer(serializers.ModelSerializer):
 class AirFlightAllSerializer(serializers.ModelSerializer):
     class Meta:
         model = AirFlight
-        fields = ('id', 'departure_time', 'arrival_time', 'airport', 'aircraft')
+        fields = (
+            'id', 'departure_time', 'arrival_time', 'airport', 'aircraft')

@@ -19,7 +19,8 @@ class Aircraft(models.Model):
 class AirFlight(models.Model):
     departure_time = models.DateTimeField("departure time", db_index=True)
     arrival_time = models.DateTimeField("arrival time", db_index=True)
-    travel_time = models.PositiveIntegerField("travel time", db_index=True, default=0)
+    travel_time = models.PositiveIntegerField("travel time", db_index=True,
+                                              default=0)
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE)
     aircraft = models.ForeignKey(Aircraft, on_delete=models.CASCADE)
     user_create = models.CharField(max_length=150)

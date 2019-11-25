@@ -40,7 +40,8 @@ def flight_update(request, pk):
         if flight.user_create == request.user.username:
             if request.method == "PUT":
                 request.data['user_create'] = request.user.username
-                serializer = AirFlightFieldsSerializer(flight, data=request.data)
+                serializer = AirFlightFieldsSerializer(flight,
+                                                       data=request.data)
                 if serializer.is_valid():
                     serializer.save()
                     return Response(serializer.data)
@@ -121,7 +122,8 @@ def user_login(request):
                 return HttpResponse("Your account was inactive.")
         else:
             print("Someone tried to login and failed.")
-            print("They used username: {} and password: {}".format(username, password))
+            print("They used username: {} and password: {}".format(username,
+                                                                   password))
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'login.html', {})
