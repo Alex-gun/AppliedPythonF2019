@@ -9,6 +9,8 @@ before_script:
   - cd homeworks/homework_09_web
   - docker build -t myapp .
   - docker run --name myapp -d myapp
+  - docker ps -a
+  - docker logs myapp
 
 script: docker exec myapp python -m pytest --pep8 && python -m pytest --cov=.
 
