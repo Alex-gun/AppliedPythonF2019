@@ -10,7 +10,7 @@ before_script:
   - docker build -t myapp .
   - docker run --name myapp -d myapp
 
-script: docker exec myapp sleep 5 && python -m pytest --pep8 && python -m pytest --cov=.
+script: docker exec -it myapp /bin/sh -c 'cd myapp && sleep 5 && python -m pytest --pep8 && python -m pytest --cov=.'
 
-after_script:
+after_script:cvfv
   - docker rm -f myapp
