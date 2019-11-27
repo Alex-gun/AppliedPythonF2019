@@ -12,5 +12,5 @@ before_script:
 
 script: docker exec -it myapp /bin/sh -c 'cd myapp && sleep 5 && python -m pytest --pep8 && python -m pytest --cov=.'
 
-after_script:cvfv
+after_script:
   - docker rm -f myapp
