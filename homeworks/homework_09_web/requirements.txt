@@ -6,4 +6,4 @@ requests
 djangorestframework
 pytz
 requests_toolbelt
-
+pytest-cov
